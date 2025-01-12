@@ -60,3 +60,26 @@ inputTareas.addEventListener("keydown", (evento) => {
         añadirTarea();
     }
 });
+
+
+// Cambio de estilo
+function estilo(evento) {
+    // Eliminar otras clases antes de añadir la nueva
+    document.body.classList.remove("oscuro", "hortera");
+
+    // Añadir la clase correspondiente
+    if (evento.target === botonOscuro) {
+        document.body.classList.add("oscuro");
+    } else if (evento.target === botonHortera) {
+        document.body.classList.add("hortera");
+    } else {}
+}
+
+let botonClaro = document.getElementById("claro");
+let botonOscuro = document.getElementById("oscuro");
+let botonHortera = document.getElementById("hortera");
+
+botonClaro.addEventListener("click", estilo);
+botonOscuro.addEventListener("click", estilo);
+botonHortera.addEventListener("click", estilo);
+

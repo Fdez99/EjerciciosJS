@@ -1,10 +1,31 @@
+:root {
+    /* Colores */
+    --fondo: white;
+    --texto: black;
+    --enlace: blue;
+    --enlace-visitado: purple;
+    --enlace-visitado-nav: white;
+    --indice: rgb(82, 133, 180);
+}
+
 body {
+    background-color: var(--fondo);
+    color: var(--texto);
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 h4 {
+    color:var(--enlace);
     display: block;
     margin-top: 2rem;
+}
+
+a {
+    color:var(--enlace);
+}
+
+a:visited {
+    color:var(--enlace-visitado);
 }
 
 nav {
@@ -14,28 +35,30 @@ nav {
 }
 
 nav a {
+    display: block;
+    color:var(--enlace);
     text-transform: capitalize;
     display: block;
     margin: 0 10px;
     padding: 2px 6px;
-    border: 1px solid blue;
+    border: 1px solid var(--enlace);
     border-radius: 4px;
     text-decoration: none;
     font-weight: 700;
-    color: blue;
-    background-color: rgb(167, 167, 255);
+    color: var(--enlace);
+    background-color: var(--indice);
 }
 
 nav a:hover {
-    color:white;
+    color: var(--fondo);
 }
 
 nav a:visited {
-    color: black;
+    color: var(--enlace-visitado-nav);
 }
 
 h4 {
-    color: blue;
+    color: var(--enlace);
 }
 
 .rosa {
@@ -45,7 +68,7 @@ h4 {
 }
 
 .normal {
-    color: darkblue;
+    color: green;
     font-size: 1.3rem;
     font-weight: 200;
 }
@@ -53,7 +76,7 @@ h4 {
 #animateMe {
     width: 100px;
     height: 100px;
-    background-color: blue;
+    background-color: greenyellow;
     position: relative;
     transition: width 2s, height 2s, background-color 2s;
 }
@@ -61,17 +84,17 @@ h4 {
 #cajaGorda, #cajaGorda2 {
     width: 600px;
     height: 300px;
-    border: 1px solid black;
+    border: 1px solid var(--texto);
     border-radius: 5px;
     background-color: cornsilk;
     position:relative;
 }
 
 .cajicas {
-    border: 1px solid black;
+    border: 1px solid var(--texto);
     border-radius: 5px;
     background-color: rgb(50, 145, 233);
-    box-shadow: 2px 2px 4px darkslategrey;
+    box-shadow: 2px 2px 4px grey;
 }
 
 .info {
@@ -86,7 +109,7 @@ h4 {
 }
 
 .tareas {
-    width: 40%;
+    width: 36%;
     display: grid;
     grid-template-columns: 2fr 1fr;
 }
@@ -111,4 +134,24 @@ h4 {
     text-decoration: line-through;
     text-decoration-style:solid;
     text-decoration-color: blue;
+}
+
+/* Estilo hortera */
+.hortera {
+    --fondo: pink;
+    --texto: red;
+    --enlace: purple;
+    --enlace-visitado: rgb(89, 65, 94);
+    --enlace-visitado-nav: magenta;
+    --indice: rgb(215, 218, 87);
+}
+
+/* Estilo oscuro */
+.oscuro {
+    --fondo: black;
+    --texto: white;
+    --enlace: yellow;
+    --indice: rgba(230, 176, 94, 0.404);
+    --enlace-visitado: rgb(168, 115, 15);
+    --enlace-visitado-nav: black;
 }
