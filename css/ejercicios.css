@@ -155,3 +155,31 @@ h4 {
     --enlace-visitado: rgb(168, 115, 15);
     --enlace-visitado-nav: black;
 }
+
+.cajicas {
+    width: 60px;
+    height: 60px;
+}
+
+.enfila {
+    width: 50%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.encolumna {
+    height: 500px;
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: 1.5rem;
+}
+
+.encuadro {
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}

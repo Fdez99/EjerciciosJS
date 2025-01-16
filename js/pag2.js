@@ -83,3 +83,29 @@ botonClaro.addEventListener("click", estilo);
 botonOscuro.addEventListener("click", estilo);
 botonHortera.addEventListener("click", estilo);
 
+// Distribución de cajitas
+let contieneCajas = document.getElementById("contenedor");
+function distribucion (evento) {
+    if (evento.target === botonFila) {
+        contieneCajas.classList.add("enfila");
+        contieneCajas.classList.remove("encolumna");
+        contieneCajas.classList.remove("encuadro");
+    } else if (evento.target === botonColumna) {
+        contieneCajas.classList.add("encolumna");
+        contieneCajas.classList.remove("enfila");
+        contieneCajas.classList.remove("encuadro");
+    } else if (evento.target === botonCuadro) {
+        contieneCajas.classList.add("encuadro");
+        contieneCajas.classList.remove("enfila");
+        contieneCajas.classList.remove("encolumna");
+    } else {
+    }
+};
+
+let botonFila = document.getElementById("enFila");
+let botonColumna = document.getElementById("enColumna");
+let botonCuadro = document.getElementById("enCuadro");
+
+botonFila.addEventListener("click", distribucion);
+botonColumna.addEventListener("click", distribucion);
+botonCuadro.addEventListener("click", distribucion);
