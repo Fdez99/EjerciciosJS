@@ -109,3 +109,64 @@ let botonCuadro = document.getElementById("enCuadro");
 botonFila.addEventListener("click", distribucion);
 botonColumna.addEventListener("click", distribucion);
 botonCuadro.addEventListener("click", distribucion);
+
+// Operaciones con números
+let inputillo = document.getElementById("inputillo");
+inputillo.type = "text";
+inputillo.name = "numeritos"
+let botonInputillo = document.getElementById("nums");
+let numericos = [];
+inputillo.focus();
+
+function addNumericos () {
+    let numerico = +(inputillo.value);
+    if ((numerico != "") && !isNaN(numerico)) {
+        numericos.push(numerico);
+        inputillo.value = "";
+        inputillo.focus();
+    } else if (numerico == "") {
+        confirm("¿Terminar?");
+        if (true) {
+            const cajaResultados = document.createElement("div");
+            cajaResultados.classList.add("cajaResultados");
+            botonInputillo.after(cajaResultados);
+            const listaNumeros = document.createElement("p");
+            const numDeNums = document.createElement("p");
+            listaNumeros.textContent = `Tu lista de números: ${numericos}`;
+            numDeNums.textContent = `Número de valores introducidos: ${numericos.length}`;
+            cajaResultados.appendChild(listaNumeros);
+            cajaResultados.appendChild(numDeNums);
+            
+            //const trasteoNumeros = document.createElement("div");
+            let maximo = Math.max(...numericos); // Hay que pasar los elementos del array como si estuvieran por separado
+            let minimo = Math.min(...numericos);
+            let ordenados = numericos.sort((a, b) => a-b);
+            let aleatorio = numericos[Math.ceil(Math.random() * numericos.length-1)];
+
+            let textMaximo = document.createElement("p");
+            let textMinimo = document.createElement("p");
+            let textOrdenados = document.createElement("p");
+            let textRandom = document.createElement("p");
+            textMaximo.textContent = `Número máximo: ${maximo}`;
+            textMinimo.textContent = `Número mínimo: ${minimo}`;
+            textOrdenados.textContent = `De menor a mayor: ${ordenados}`;
+            textRandom.textContent = `Número al azar: ${aleatorio}`;
+
+            cajaResultados.appendChild(textMaximo);
+            cajaResultados.appendChild(textMinimo);
+            cajaResultados.appendChild(textOrdenados);
+            cajaResultados.appendChild(textRandom);
+        }
+    } else {
+        inputillo.value = "";
+        alert("Mete un número o pulsa el botón dos veces para terminar")
+    }
+}
+
+botonInputillo.addEventListener("click", addNumericos);
+inputillo.addEventListener("keydown", (evento) => {
+    if (evento.key == "Enter") {
+        addNumericos();
+    }
+})
+

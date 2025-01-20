@@ -97,6 +97,15 @@ h4 {
     box-shadow: 2px 2px 4px grey;
 }
 
+.cajurrias {
+    width: 32px;
+    height: 32px;
+    background-color:deeppink;
+    border-radius: 5px;
+    border: 1px solid var(---texto);
+    box-shadow: 2px 2px 4px rgb(98, 98, 98);
+}
+
 .info {
     font-style: italic;
     font-weight: 300;
@@ -170,9 +179,8 @@ h4 {
 }
 
 .encolumna {
-    height: 500px;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     margin-bottom: 1.5rem;
 }
 
@@ -182,4 +190,13 @@ h4 {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
     margin-bottom: 1.5rem;
+}
+
+.cajaResultados {
+    width: 60vw;
+    border: 1px solid black;
+    background-color: antiquewhite;
+    border-radius: 6px;
+    margin-top: 1.5rem;
+    padding: 0 2rem;
 }
