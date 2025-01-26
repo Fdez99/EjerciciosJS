@@ -118,7 +118,7 @@ h4 {
 }
 
 .tareas {
-    width: 36%;
+    max-width: 36%;
     display: grid;
     grid-template-columns: 2fr 1fr;
 }
@@ -199,4 +199,32 @@ h4 {
     border-radius: 6px;
     margin-top: 1.5rem;
     padding: 0 2rem;
+}
+
+.editables {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.5rem 1rem;
+    box-shadow: 2px 2px 2px 0.6;
+    border-radius: 5px;
+    background-color: antiquewhite;
+    max-width: 20%;
+    min-width: 10%;
+}
+
+.h3-horrible {
+    color:rgb(63, 42, 27);
+}
+
+.iconito {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(172, 119, 79);
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
 }
