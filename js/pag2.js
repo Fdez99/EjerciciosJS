@@ -1,56 +1,88 @@
+// Lista de tareas que se guarda en el navegador
 let boton = document.getElementById("añadeTarea");
 let inputTareas = document.getElementById("inputTareas");
-let tareas = document.getElementById("tareas"); // la lista de tareas <ul>
-tareas.classList.add("tareas"); // le damos estilo css a la lista de tareas
+let tareas = document.getElementById("tareas"); // Lista de tareas <ul>
+tareas.classList.add("tareas"); // Añadir estilo CSS a la lista
 
 inputTareas.focus();
 
-function añadirTarea() {
-    let nuevaTarea = inputTareas.value.trim(); // Elimina espacios extra al inicio/final
-    if (nuevaTarea === "") return; // No añade tareas vacías
+// Cargar tareas al iniciar la página
+document.addEventListener("DOMContentLoaded", cargarTareas);
 
-    // crear un div para la tarea y otro para los botones
+function obtenerTareasGuardadas() {
+    return JSON.parse(localStorage.getItem("tareas")) || [];
+}
+
+function guardarTareas(tareasArray) {
+    localStorage.setItem("tareas", JSON.stringify(tareasArray));
+}
+
+function añadirTarea() {
+    let nuevaTarea = inputTareas.value.trim();
+    if (nuevaTarea === "") return;
+
+    let listaTareas = obtenerTareasGuardadas();
+
+    let tareaObj = { texto: nuevaTarea, hecha: false };
+    listaTareas.push(tareaObj);
+    guardarTareas(listaTareas);
+
+    agregarElementoLista(tareaObj);
+    inputTareas.value = "";
+    inputTareas.focus();
+}
+
+function agregarElementoLista(tareaObj) {
     let colTarea = document.createElement("div");
     let colBotones = document.createElement("div");
 
-    // Crear el elemento de lista
     let tareaNueva = document.createElement("li");
-    tareaNueva.textContent = nuevaTarea;
+    tareaNueva.textContent = tareaObj.texto;
 
-    // Crear el botón de borrar
+    if (tareaObj.hecha) {
+        tareaNueva.classList.add("tachao");
+    }
+
     let botonBorrar = document.createElement("button");
     botonBorrar.textContent = "Borrar";
     botonBorrar.classList.add("borrar");
 
-    // Crear el botón "hecho"
     let botonHecho = document.createElement("button");
     botonHecho.textContent = "Hecho";
     botonHecho.classList.add("hecho");
 
-    // Añadir evento al botón de borrar
     botonBorrar.addEventListener("click", () => {
-        tareaNueva.remove(); // Elimina la tarea de la lista
-        botonHecho.remove(); // Elimina el botón "Hecho"
-        botonBorrar.remove(); // Y elimina el propio botón "Borrar"
+        let listaTareas = obtenerTareasGuardadas();
+        let nuevasTareas = listaTareas.filter(t => t.texto !== tareaObj.texto);
+        guardarTareas(nuevasTareas);
+
+        tareaNueva.remove();
+        botonHecho.remove();
+        botonBorrar.remove();
     });
 
-    // Evento del botón "hecho"
-    botonHecho.addEventListener("click", () =>{
+    botonHecho.addEventListener("click", () => {
         tareaNueva.classList.toggle("tachao");
+        let listaTareas = obtenerTareasGuardadas();
+        listaTareas.forEach(t => {
+            if (t.texto === tareaObj.texto) {
+                t.hecha = !t.hecha;
+            }
+        });
+        guardarTareas(listaTareas);
     });
 
-    // Añadir cada cosa a su columna
     colTarea.appendChild(tareaNueva);
     colBotones.appendChild(botonBorrar);
     colBotones.appendChild(botonHecho);
 
-    // Añadir a la lista <ul> las columnas <div>
     tareas.appendChild(colTarea);
     tareas.appendChild(colBotones);
+}
 
-    // Limpiar el input y devolverle el foco
-    inputTareas.value = "";
-    inputTareas.focus();
+function cargarTareas() {
+    let listaTareas = obtenerTareasGuardadas();
+    listaTareas.forEach(agregarElementoLista);
 }
 
 // Eventos para añadir tareas
@@ -60,6 +92,7 @@ inputTareas.addEventListener("keydown", (evento) => {
         añadirTarea();
     }
 });
+
 
 
 // Cambio de estilo
@@ -85,6 +118,7 @@ botonHortera.addEventListener("click", estilo);
 
 // Distribución de cajitas
 let contieneCajas = document.getElementById("contenedor");
+contieneCajas.classList.add("enfila");
 function distribucion (evento) {
     if (evento.target === botonFila) {
         contieneCajas.classList.add("enfila");
@@ -255,4 +289,25 @@ elementoTexto.addEventListener("click", (e)=>{
         if(e.key == "Enter"){e.target.blur()};
     });
 });
+
+// Ejercicio 16 - Cajas de color aleatorio con texto blanco si el color de la caja es oscuro
+for (let numCajas=1; numCajas<=6; numCajas++) {
+    let caja = document.createElement("div");
+    caja.classList.add("caja16");
+    caja.textContent = `Caja nº ${numCajas}`
+
+    // Colores aleatorios
+    let rojo = parseInt(Math.random()*256);
+    let verde = parseInt(Math.random()*256);
+    let azul = parseInt(Math.random()*256);
+
+    console.log(rojo, verde, azul);
+
+    caja.style.backgroundColor = `rgb(${rojo}, ${verde}, ${azul})`; // ¡Color aleatorio!
+    if (rojo<140 && verde<140 && azul<140) {
+        caja.style.color = "white";
+    } // Si el color de fondo es oscuro, pon el texto blanco
+    let cajasAleatorias = document.getElementById("cajas-color-aleatorio");
+    cajasAleatorias.appendChild(caja);
+}
 
